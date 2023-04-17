@@ -8,7 +8,9 @@ Rajiv Sharma (VFX Pipeline) and Frieder Erdmann created and streamlined the proc
 This addon updates their work to PySide6, and offers a template that is compatible with Blender 3 and up!
 
 ## What Does It Do?
-This allows you to use images for your addon background, buttons etc. As well as custom solid colors or gradients per button, title etc.
+This allows you to use images for your addon background, buttons etc. 
+
+As well as custom solid colors or gradients per button, title etc.
 
 Pyside6 also supports customizable dials for rotary control, as well as sliders, in addition to the standard push buttons, radio buttons, checkboxes and more!
 
