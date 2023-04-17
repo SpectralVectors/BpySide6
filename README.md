@@ -16,6 +16,8 @@ There is a Stylesheet to allow global styling, or customizing individual element
 
 Images are packed into a resources_rc.py data file to ensure compatibility and portability.
 
+QtAwesome provides icon sets from FontAwesome, Elusive, Material Design, Phosphor, Remix and Microsoft Codicons.
+
 ## File structure
 ```
 + BpySide6/
