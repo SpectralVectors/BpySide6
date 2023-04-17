@@ -1,6 +1,7 @@
 # BpySide6
-Advanced Addon Interface for Blender, powered by PySide6
+Advanced Addon Interface for Blender, powered by PySide6 and QtAwesome
 
+__This Addon is under development. It relies on PySide6 and QtAwesome, but does not yet install those dependencies for you!__
 ## What Is It?
 Rajiv Sharma (VFX Pipeline) and Frieder Erdmann created and streamlined the process of using PySide2 inside of Blender to create more advanced user interfaces for addons.
 
