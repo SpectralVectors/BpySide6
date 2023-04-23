@@ -11,7 +11,7 @@ bl_info = {
     'author': 'Frieder Erdmann, Rajiv Sharma, Spectral Vectors',
     'description': 'Advanced PySide GUI for Blender Addons',
     'blender': (2, 80, 0),
-    'version': (0, 0, 3),
+    'version': (0, 0, 4),
     'location': 'N Panel > BpySide6',
     'warning': 'Under Development',
     'category': 'Generic'
@@ -45,6 +45,7 @@ class Addon_UI(QDialog):
         Left = Qt.AlignmentFlag.AlignLeft
         Right = Qt.AlignmentFlag.AlignRight
         Center = Qt.AlignmentFlag.AlignCenter
+        HCenter = Qt.AlignmentFlag.AlignHCenter
 
         # The size of the Window
         self.setFixedSize(600, 400)
@@ -133,13 +134,12 @@ class Addon_UI(QDialog):
 # Main Area - starts
     # Home Screen
         self.home = QFrame(self.addon)
-        self.home_layout = QVBoxLayout(self.home)
+        self.home.setMinimumSize(450, 280)
+        self.home_layout = QGridLayout(self.home)
 
         # Location
-        self.location_frame = QFrame(self.home)
-        # self.location_frame.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
-        self.location_layout = QHBoxLayout(self.location_frame)
         self.location_label = QLabel(text='Location: ')
+        self.location_label.setObjectName('location_label')
         location_sliders = []
         self.location_x = QSlider()
         self.location_x.setObjectName('location_x')
@@ -151,46 +151,31 @@ class Addon_UI(QDialog):
         self.location_z.setObjectName('location_z')
         location_sliders.append(self.location_z)
         for slider in location_sliders:
-            slider.setSingleStep(0.1)
-            slider.setMinimum(-100)
-            slider.setMaximum(100)
+            slider.setSingleStep(0.01)
+            slider.setMinimum(-50)
+            slider.setMaximum(50)
             slider.setOrientation(Qt.Horizontal)
-        self.location_layout.addWidget(self.location_label)
-        self.location_layout.addWidget(self.location_x)
-        self.location_layout.addWidget(self.location_y)
-        self.location_layout.addWidget(self.location_z)
-        self.home_layout.addWidget(self.location_frame)
 
         # Rotation
-        self.rotation_frame = QFrame(self.home)
-        # self.rotation_frame.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
-        self.rotation_layout = QHBoxLayout(self.rotation_frame)
         self.rotation_label = QLabel(text='Rotation: ')
+        self.rotation_label.setObjectName('rotation_label')
         rotation_dials = []
-        self.dial_x = QDial()
-        self.dial_x.setObjectName('dial_x')
-        rotation_dials.append(self.dial_x)
-        self.dial_y = QDial()
-        self.dial_y.setObjectName('dial_y')
-        rotation_dials.append(self.dial_y)
-        self.dial_z = QDial()
-        self.dial_z.setObjectName('dial_z')
-        rotation_dials.append(self.dial_z)
+        self.rotation_x = QDial()
+        self.rotation_x.setObjectName('rotation_x')
+        rotation_dials.append(self.rotation_x)
+        self.rotation_y = QDial()
+        self.rotation_y.setObjectName('rotation_y')
+        rotation_dials.append(self.rotation_y)
+        self.rotation_z = QDial()
+        self.rotation_z.setObjectName('rotation_z')
+        rotation_dials.append(self.rotation_z)
         for dial in rotation_dials:
             dial.setSingleStep(0.01745329)
             dial.setRange(0, 360)
-            dial.setMinimumWidth(120)
-        self.rotation_layout.addWidget(self.rotation_label)
-        self.rotation_layout.addWidget(self.dial_x)
-        self.rotation_layout.addWidget(self.dial_y)
-        self.rotation_layout.addWidget(self.dial_z)
-        self.home_layout.addWidget(self.rotation_frame)
 
         # Scale
-        self.scale_frame = QFrame(self.home)
-        # self.scale_frame.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
-        self.scale_layout = QHBoxLayout(self.scale_frame)
         self.scale_label = QLabel(text='Scale: ')
+        self.scale_label.setObjectName('scale_label')
         scale_sliders = []
         self.scale_x = QSlider()
         self.scale_x.setObjectName('scale_x')
@@ -205,26 +190,40 @@ class Addon_UI(QDialog):
             slider.setSingleStep(0.1)
             slider.setMinimum(0.1)
             slider.setMaximum(10)
-            slider.setMinimumWidth(150)
-        self.scale_layout.addWidget(self.scale_label)
-        self.scale_layout.addWidget(self.scale_x)
-        self.scale_layout.addWidget(self.scale_y)
-        self.scale_layout.addWidget(self.scale_z)
-        self.home_layout.addWidget(self.scale_frame)
+
+        self.home_layout.addWidget(self.location_label, 0, 0, Center)
+        self.home_layout.addWidget(self.location_x, 0, 1, Center)
+        self.home_layout.addWidget(self.location_y, 0, 2, Center)
+        self.home_layout.addWidget(self.location_z, 0, 3, Center)
+
+        self.home_layout.addWidget(self.rotation_label, 1, 0, Center)
+        self.home_layout.addWidget(self.rotation_x, 1, 1, Center)
+        self.home_layout.addWidget(self.rotation_y, 1, 2, Center)
+        self.home_layout.addWidget(self.rotation_z, 1, 3, Center)
+
+        self.home_layout.addWidget(self.scale_label, 2, 0, Center)
+        self.home_layout.addWidget(self.scale_x, 2, 1, Center)
+        self.home_layout.addWidget(self.scale_y, 2, 2, Center)
+        self.home_layout.addWidget(self.scale_z, 2, 3, Center)
 
     # Settings Screen
         self.settings = QFrame(self.addon)
-        self.settings_layout = QGridLayout(self.settings)
+        self.settings.setMinimumSize(450, 120)
+        self.settings_layout = QVBoxLayout(self.settings)
+        self.settings_layout.setAlignment(Top | HCenter)
         self.settings_label = QLabel(text='Settings')
-        self.checkbox_1 = QCheckBox('Option 1', self.settings)
-        self.checkbox_2 = QCheckBox('Option 2', self.settings)
-        self.checkbox_3 = QCheckBox('Option 3', self.settings)
-        self.checkbox_4 = QCheckBox('Option 4', self.settings)
-        self.settings_layout.addWidget(self.settings_label, 0, 0)
-        self.settings_layout.addWidget(self.checkbox_1, 1, 1)
-        self.settings_layout.addWidget(self.checkbox_2, 1, 2)
-        self.settings_layout.addWidget(self.checkbox_3, 2, 1)
-        self.settings_layout.addWidget(self.checkbox_4, 2, 2)
+        self.settings_label.setObjectName('settings_label')
+        self.checkbox_1 = QCheckBox('Show Overlays', self.settings)
+        self.checkbox_1.setCheckState(Qt.Checked)
+        self.checkbox_2 = QCheckBox('Show Nav Gizmos', self.settings)
+        self.checkbox_2.setCheckState(Qt.Checked)
+        self.checkbox_3 = QCheckBox('Enable Snapping', self.settings)
+        self.checkbox_4 = QCheckBox('Enable Proportional Editing', self.settings)
+        self.settings_layout.addWidget(self.settings_label)
+        self.settings_layout.addWidget(self.checkbox_1)
+        self.settings_layout.addWidget(self.checkbox_2)
+        self.settings_layout.addWidget(self.checkbox_3)
+        self.settings_layout.addWidget(self.checkbox_4)
         self.settings.hide()
 
     # Docs Screen

@@ -17,10 +17,10 @@ import bpy
 
 bl_info = {
     'name': 'BpySide6',
-    'author': 'Frieder Erdmann, Rajiv Sharma, Xian Juyao,  Spectral Vectors',
+    'author': 'Frieder Erdmann, Rajiv Sharma, Spectral Vectors',
     'description': 'Advanced PySide GUI for Blender Addons',
     'blender': (2, 80, 0),
-    'version': (0, 0, 2),
+    'version': (0, 0, 4),
     'location': 'N Panel',
     'warning': 'Under Development',
     'category': 'Generic'

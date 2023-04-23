@@ -1,7 +1,9 @@
 QDialog {
-    background-image: url(:/images/bg.png)
+    background-image: url(:/images/bg.png);
+    border-radius: 5px;
 }
 
+/* Sliders */
 QSlider::handle:horizontal#location_x {
     background: red;
     border-radius: 5px;
@@ -32,15 +34,16 @@ QSlider::handle:vertical#scale_z {
     border-radius: 5px;
 }
 
-QDial#dial_x {
+/* Dials */
+QDial#rotation_x {
     background: red;
 }
 
-QDial#dial_y {
+QDial#rotation_y {
     background: lightgreen;
 }
 
-QDial#dial_z {
+QDial#rotation_z {
     background: lightblue;
 }
 
@@ -49,17 +52,36 @@ QCheckBox {
     font: 12pt "Verdana";
 }
 
-/* Title */
+/* Labels */
 QLabel#title {
     color: white;
-    font: 16pt "Verdana";
+    font: bold 16pt "Verdana";
 }
 
-QLabel#title {
+QLabel {
+    color: white;
+    font: 10pt "Verdana";
+}
+
+QLabel#settings_label {
+    color: white;
+    font: bold 14pt "Verdana";
+}
+
+QLabel#location_label {
     color: white;
     font: 12pt "Verdana";
 }
 
+QLabel#rotation_label {
+    color: white;
+    font: 12pt "Verdana";
+}
+
+QLabel#scale_label {
+    color: white;
+    font: 12pt "Verdana";
+}
 
 QLabel#logo {
     image: url(:/images/logo.png);
@@ -69,6 +91,7 @@ QLabel#logo {
     max-height: 24px;    
 }
 
+/* Buttons */
 QPushButton#home {
     border-radius: 5px;
     border: 1px solid gray;

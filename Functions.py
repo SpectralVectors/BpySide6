@@ -38,9 +38,9 @@ class Addon_Functions(Addon_UI, QDialog):
         self.info_button.clicked.connect(self.info_button_function)
 
         # Dials
-        self.dial_x.valueChanged.connect(self.dial_x_function)
-        self.dial_y.valueChanged.connect(self.dial_y_function)
-        self.dial_z.valueChanged.connect(self.dial_z_function)
+        self.rotation_x.valueChanged.connect(self.rotation_x_function)
+        self.rotation_y.valueChanged.connect(self.rotation_y_function)
+        self.rotation_z.valueChanged.connect(self.rotation_z_function)
 
         # Sliders
         self.location_x.valueChanged.connect(self.location_x_function)
@@ -50,6 +50,12 @@ class Addon_Functions(Addon_UI, QDialog):
         self.scale_x.valueChanged.connect(self.scale_x_function)
         self.scale_y.valueChanged.connect(self.scale_y_function)
         self.scale_z.valueChanged.connect(self.scale_z_function)
+
+        # Checkboxes
+        self.checkbox_1.clicked.connect(self.checkbox_1_function)
+        self.checkbox_2.clicked.connect(self.checkbox_2_function)
+        self.checkbox_3.clicked.connect(self.checkbox_3_function)
+        self.checkbox_4.clicked.connect(self.checkbox_4_function)
 
 # The functions that run when the controls are used:
 # Title Bar Functions
@@ -62,6 +68,9 @@ class Addon_Functions(Addon_UI, QDialog):
     def minimize_button_function(self):
         self.showMinimized()
 
+# Nav Bar Functions
+    # Show the screen of the button that was clicked
+    # Hide all other screens
     def home_button_function(self):
         self.home.show()
         self.settings.hide()
@@ -86,23 +95,7 @@ class Addon_Functions(Addon_UI, QDialog):
         self.home.hide()
         self.docs.hide()
 
-# Rotation Dial Functions
-    def dial_x_function(self):
-        for object in bpy.context.scene.objects:
-            if object.select_get():
-                object.rotation_euler[0] = (self.dial_x.value() * 0.01745329)
-
-    def dial_y_function(self):
-        for object in bpy.context.scene.objects:
-            if object.select_get():
-                object.rotation_euler[1] = (self.dial_y.value() * 0.01745329)
-
-    def dial_z_function(self):
-        for object in bpy.context.scene.objects:
-            if object.select_get():
-                object.rotation_euler[2] = (self.dial_z.value() * 0.01745329)
-
-# Slider Functions
+# Location Slider Functions
     def location_x_function(self):
         for object in bpy.context.scene.objects:
             if object.select_get():
@@ -118,6 +111,23 @@ class Addon_Functions(Addon_UI, QDialog):
             if object.select_get():
                 object.location[2] = self.location_z.value()
 
+# Rotation Dial Functions
+    def rotation_x_function(self):
+        for object in bpy.context.scene.objects:
+            if object.select_get():
+                object.rotation_euler[0] = (self.rotation_x.value() * 0.01745329)
+
+    def rotation_y_function(self):
+        for object in bpy.context.scene.objects:
+            if object.select_get():
+                object.rotation_euler[1] = (self.rotation_y.value() * 0.01745329)
+
+    def rotation_z_function(self):
+        for object in bpy.context.scene.objects:
+            if object.select_get():
+                object.rotation_euler[2] = (self.rotation_z.value() * 0.01745329)
+
+# Scale Slider Functions
     def scale_x_function(self):
         for object in bpy.context.scene.objects:
             if object.select_get():
@@ -132,6 +142,28 @@ class Addon_Functions(Addon_UI, QDialog):
         for object in bpy.context.scene.objects:
             if object.select_get():
                 object.scale[2] = self.scale_z.value()
+
+# Checkbox Functions
+    def checkbox_1_function(self):
+        for screen in bpy.data.screens:
+            for area in screen.areas:
+                if area.type == 'VIEW_3D':
+                    for space in area.spaces:
+                        space.overlay.show_overlays = self.checkbox_1.isChecked()
+                        # space.overlay.show_overlays = not space.overlay.show_overlays
+
+    def checkbox_2_function(self):
+        for screen in bpy.data.screens:
+            for area in screen.areas:
+                if area.type == 'VIEW_3D':
+                    for space in area.spaces:
+                        space.show_gizmo = self.checkbox_2.isChecked()
+
+    def checkbox_3_function(self):
+        bpy.context.scene.tool_settings.use_snap = self.checkbox_3.isChecked()
+
+    def checkbox_4_function(self):
+        bpy.context.scene.tool_settings.use_proportional_edit_objects = self.checkbox_4.isChecked()
 
 class CustomWindowOperator(QtWindowEventLoop):
     bl_idname = 'screen.custom_window'
