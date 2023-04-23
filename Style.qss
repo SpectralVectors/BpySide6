@@ -2,16 +2,46 @@ QDialog {
     background-image: url(:/images/bg.png)
 }
 
+QSlider::handle:horizontal#location_x {
+    background: red;
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal#location_y {
+    background: lightgreen;
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal#location_z {
+    background: lightblue;
+    border-radius: 5px;
+}
+
+QSlider::handle:vertical#scale_x {
+    background: red;
+    border-radius: 5px;
+}
+
+QSlider::handle:vertical#scale_y {
+    background: lightgreen;
+    border-radius: 5px;
+}
+
+QSlider::handle:vertical#scale_z {
+    background: lightblue;
+    border-radius: 5px;
+}
+
 QDial#dial_x {
     background: red;
 }
 
 QDial#dial_y {
-    background: green;
+    background: lightgreen;
 }
 
 QDial#dial_z {
-    background: blue;
+    background: lightblue;
 }
 
 QCheckBox {

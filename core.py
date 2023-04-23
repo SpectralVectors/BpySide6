@@ -46,6 +46,7 @@ class QtWindowEventLoop(bpy.types.Operator):
 
         # If there is not already an instance, then create the first one
         if not self.app:
+            sys.argv += ['-platform', 'windows:darkmode=2']
             self.app = QtWidgets.QApplication(sys.argv)
 
         self.app.setStyle(QtWidgets.QStyleFactory.create("Fusion"))

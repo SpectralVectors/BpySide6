@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import (
     QDialog, QLabel, QPushButton, QDial, QWidget, QVBoxLayout, QGridLayout,
-    QHBoxLayout, QTableWidget, QTableWidgetItem, QCheckBox, QFrame, QTextEdit)
+    QHBoxLayout, QSlider, QTableWidgetItem, QCheckBox, QFrame, QTextEdit)
 from PySide6.QtCore import Qt, QSize
 import qtawesome as qta
 from . import resources_rc
@@ -11,7 +11,7 @@ bl_info = {
     'author': 'Frieder Erdmann, Rajiv Sharma, Spectral Vectors',
     'description': 'Advanced PySide GUI for Blender Addons',
     'blender': (2, 80, 0),
-    'version': (0, 0, 2),
+    'version': (0, 0, 3),
     'location': 'N Panel > BpySide6',
     'warning': 'Under Development',
     'category': 'Generic'
@@ -22,7 +22,7 @@ The Addon UI is divided into 3 primary sections:
 
 1 - Title Bar - logo, title, window controls
 2 - Nav Menu - home, settings and info buttons
-3 - Main Area - Home Page, Settings Page, Info Page
+3 - Main Area - Home, Settings, Docs, and Info Pages
 
 The Main Area will display a different Page based on
 the Nav buttons.
@@ -33,8 +33,8 @@ The Title Bar demonstrates a design pattern, and the same
 pattern repeats for all other sections:
 A Frame contains a layout which contains a series of Widgets,
 Some of which are buttons, dials, sub-frames or sub-layouts.
-
 '''
+
 
 class Addon_UI(QDialog):
     def __init__(self, parent=None):
@@ -51,7 +51,7 @@ class Addon_UI(QDialog):
 
         # addon will be the parent container for all other widgets
         self.addon = QWidget()
-        # addon layout will display all the child widgets according to its alignment flag
+        # addon layout will arrange all widgets according to its alignment flag
         self.addon_layout = QHBoxLayout(self.addon)
         self.addon_layout.setAlignment(Top | Left)
 
@@ -134,29 +134,83 @@ class Addon_UI(QDialog):
     # Home Screen
         self.home = QFrame(self.addon)
         self.home_layout = QVBoxLayout(self.home)
+
+        # Location
+        self.location_frame = QFrame(self.home)
+        # self.location_frame.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
+        self.location_layout = QHBoxLayout(self.location_frame)
+        self.location_label = QLabel(text='Location: ')
+        location_sliders = []
+        self.location_x = QSlider()
+        self.location_x.setObjectName('location_x')
+        location_sliders.append(self.location_x)
+        self.location_y = QSlider()
+        self.location_y.setObjectName('location_y')
+        location_sliders.append(self.location_y)
+        self.location_z = QSlider()
+        self.location_z.setObjectName('location_z')
+        location_sliders.append(self.location_z)
+        for slider in location_sliders:
+            slider.setSingleStep(0.1)
+            slider.setMinimum(-100)
+            slider.setMaximum(100)
+            slider.setOrientation(Qt.Horizontal)
+        self.location_layout.addWidget(self.location_label)
+        self.location_layout.addWidget(self.location_x)
+        self.location_layout.addWidget(self.location_y)
+        self.location_layout.addWidget(self.location_z)
+        self.home_layout.addWidget(self.location_frame)
+
         # Rotation
         self.rotation_frame = QFrame(self.home)
-        #self.rotation_frame.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
+        # self.rotation_frame.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
         self.rotation_layout = QHBoxLayout(self.rotation_frame)
-        self.dial_label = QLabel(text='Rotation: ')
-        dials = []
+        self.rotation_label = QLabel(text='Rotation: ')
+        rotation_dials = []
         self.dial_x = QDial()
         self.dial_x.setObjectName('dial_x')
-        dials.append(self.dial_x)
+        rotation_dials.append(self.dial_x)
         self.dial_y = QDial()
         self.dial_y.setObjectName('dial_y')
-        dials.append(self.dial_y)
+        rotation_dials.append(self.dial_y)
         self.dial_z = QDial()
         self.dial_z.setObjectName('dial_z')
-        dials.append(self.dial_z)
-        for dial in dials:
+        rotation_dials.append(self.dial_z)
+        for dial in rotation_dials:
             dial.setSingleStep(0.01745329)
             dial.setRange(0, 360)
-        self.rotation_layout.addWidget(self.dial_label)
+            dial.setMinimumWidth(120)
+        self.rotation_layout.addWidget(self.rotation_label)
         self.rotation_layout.addWidget(self.dial_x)
         self.rotation_layout.addWidget(self.dial_y)
         self.rotation_layout.addWidget(self.dial_z)
         self.home_layout.addWidget(self.rotation_frame)
+
+        # Scale
+        self.scale_frame = QFrame(self.home)
+        # self.scale_frame.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
+        self.scale_layout = QHBoxLayout(self.scale_frame)
+        self.scale_label = QLabel(text='Scale: ')
+        scale_sliders = []
+        self.scale_x = QSlider()
+        self.scale_x.setObjectName('scale_x')
+        scale_sliders.append(self.scale_x)
+        self.scale_y = QSlider()
+        self.scale_y.setObjectName('scale_y')
+        scale_sliders.append(self.scale_y)
+        self.scale_z = QSlider()
+        self.scale_z.setObjectName('scale_z')
+        scale_sliders.append(self.scale_z)
+        for slider in scale_sliders:
+            slider.setSingleStep(0.1)
+            slider.setMinimum(0.1)
+            slider.setMaximum(10)
+            slider.setMinimumWidth(150)
+        self.scale_layout.addWidget(self.scale_label)
+        self.scale_layout.addWidget(self.scale_x)
+        self.scale_layout.addWidget(self.scale_y)
+        self.scale_layout.addWidget(self.scale_z)
+        self.home_layout.addWidget(self.scale_frame)
 
     # Settings Screen
         self.settings = QFrame(self.addon)

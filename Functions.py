@@ -42,6 +42,15 @@ class Addon_Functions(Addon_UI, QDialog):
         self.dial_y.valueChanged.connect(self.dial_y_function)
         self.dial_z.valueChanged.connect(self.dial_z_function)
 
+        # Sliders
+        self.location_x.valueChanged.connect(self.location_x_function)
+        self.location_y.valueChanged.connect(self.location_y_function)
+        self.location_z.valueChanged.connect(self.location_z_function)
+
+        self.scale_x.valueChanged.connect(self.scale_x_function)
+        self.scale_y.valueChanged.connect(self.scale_y_function)
+        self.scale_z.valueChanged.connect(self.scale_z_function)
+
 # The functions that run when the controls are used:
 # Title Bar Functions
     def close_button_function(self):
@@ -93,6 +102,36 @@ class Addon_Functions(Addon_UI, QDialog):
             if object.select_get():
                 object.rotation_euler[2] = (self.dial_z.value() * 0.01745329)
 
+# Slider Functions
+    def location_x_function(self):
+        for object in bpy.context.scene.objects:
+            if object.select_get():
+                object.location[0] = self.location_x.value()
+
+    def location_y_function(self):
+        for object in bpy.context.scene.objects:
+            if object.select_get():
+                object.location[1] = self.location_y.value()
+
+    def location_z_function(self):
+        for object in bpy.context.scene.objects:
+            if object.select_get():
+                object.location[2] = self.location_z.value()
+
+    def scale_x_function(self):
+        for object in bpy.context.scene.objects:
+            if object.select_get():
+                object.scale[0] = self.scale_x.value()
+
+    def scale_y_function(self):
+        for object in bpy.context.scene.objects:
+            if object.select_get():
+                object.scale[1] = self.scale_y.value()
+
+    def scale_z_function(self):
+        for object in bpy.context.scene.objects:
+            if object.select_get():
+                object.scale[2] = self.scale_z.value()
 
 class CustomWindowOperator(QtWindowEventLoop):
     bl_idname = 'screen.custom_window'
