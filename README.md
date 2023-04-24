@@ -40,7 +40,9 @@ This addon updates their work to PySide6, and offers a template that is compatib
 |           The visual layout of the Addon window
 +-- Functions.py
 |           Linking the UI controls to functions and Operators in Blender
-+-- Style.qss
++-- README.md
+|           Markdown documentation available in the addon
++-- StyleSheet.qss
 |           Stylesheet for the Addon
 +-- resources.qrc
 |           List of resources used in the addon (images in this case)
