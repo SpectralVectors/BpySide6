@@ -8,13 +8,18 @@ __This Addon is under development.__
 __It relies on PySide6 and QtAwesome, but does not yet install those dependencies for you!__
 
 ## Features
-- Multi-page layout - Addon controls, preferences, Markdown documentation, credits and more!
+- Multi-page layout - Addon Controls, Preferences, Documentation, Credits and more!
+- Floating, draggable window!
+- Custom Title Bar with Minimize, Maximize and Close buttons!
+- Custom Navigation Widget!
+- Markdown Documentation available in the Addon!
 - Images for your logo, addon background, buttons etc!
 - Custom gradients or solid colors per button, title etc!
-- Customizable dials for rotary control, linear sliders, in addition to the standard push buttons, radio buttons, checkboxes and more!
-- Stylesheet to allow global styling, or customizing individual elements.
-- Images are packed into a resources_rc.py data file to ensure compatibility and portability.
-- QtAwesome provides icon sets from FontAwesome, Elusive, Material Design, Phosphor, Remix and Microsoft Codicons.
+- Customizable dials for rotary control, linear sliders, push buttons, radio buttons, checkboxes and more!
+- Stylesheet to allow global styling, or customizing individual elements!
+- Addon Title and Credits auto-fill from bl_info!
+- Images are packed into a resources_rc.py data file to ensure compatibility and portability!
+- QtAwesome provides icon sets from FontAwesome, Elusive, Material Design, Phosphor, Remix and Microsoft Codicons!
 
 ## What Is It?
 Rajiv Sharma (VFX Pipeline) and Frieder Erdmann created and streamlined the process of using PySide2 inside of Blender to create more advanced user interfaces for addons.
