@@ -5,11 +5,6 @@ Advanced Addon Interface for Blender, powered by PySide6 and QtAwesome
 
 __This Addon is under development. It relies on PySide6 and QtAwesome, but does not yet install those dependencies for you!__
 
-## What Is It?
-Rajiv Sharma (VFX Pipeline) and Frieder Erdmann created and streamlined the process of using PySide2 inside of Blender to create more advanced user interfaces for addons.
-
-This addon updates their work to PySide6, and offers a template that is compatible with Blender 3 and up!
-
 ## Features
 Multi-page layout - Addon controls, preferences, Markdown documentation and credits!
 
@@ -24,6 +19,11 @@ Stylesheet to allow global styling, or customizing individual elements.
 Images are packed into a resources_rc.py data file to ensure compatibility and portability.
 
 QtAwesome provides icon sets from FontAwesome, Elusive, Material Design, Phosphor, Remix and Microsoft Codicons.
+
+## What Is It?
+Rajiv Sharma (VFX Pipeline) and Frieder Erdmann created and streamlined the process of using PySide2 inside of Blender to create more advanced user interfaces for addons.
+
+This addon updates their work to PySide6, and offers a template that is compatible with Blender 3 and up!
 
 ## File structure
 ```
