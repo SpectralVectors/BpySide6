@@ -3,22 +3,18 @@ Advanced Addon Interface for Blender, powered by PySide6 and QtAwesome
 
 ![BpySide6](/BpySide6.png)
 
-__This Addon is under development. It relies on PySide6 and QtAwesome, but does not yet install those dependencies for you!__
+__This Addon is under development.__
+
+__It relies on PySide6 and QtAwesome, but does not yet install those dependencies for you!__
 
 ## Features
-Multi-page layout - Addon controls, preferences, Markdown documentation and credits!
-
-Images for your addon background, buttons etc!
-
-Custom gradients or solid colors per button, title etc!
-
-Customizable dials for rotary control, linear sliders, in addition to the standard push buttons, radio buttons, checkboxes and more!
-
-Stylesheet to allow global styling, or customizing individual elements.
-
-Images are packed into a resources_rc.py data file to ensure compatibility and portability.
-
-QtAwesome provides icon sets from FontAwesome, Elusive, Material Design, Phosphor, Remix and Microsoft Codicons.
+- Multi-page layout - Addon controls, preferences, Markdown documentation and credits!
+- Images for your addon background, buttons etc!
+- Custom gradients or solid colors per button, title etc!
+- Customizable dials for rotary control, linear sliders, in addition to the standard push buttons, radio buttons, checkboxes and more!
+- Stylesheet to allow global styling, or customizing individual elements.
+- Images are packed into a resources_rc.py data file to ensure compatibility and portability.
+- QtAwesome provides icon sets from FontAwesome, Elusive, Material Design, Phosphor, Remix and Microsoft Codicons.
 
 ## What Is It?
 Rajiv Sharma (VFX Pipeline) and Frieder Erdmann created and streamlined the process of using PySide2 inside of Blender to create more advanced user interfaces for addons.
@@ -48,8 +44,9 @@ This addon updates their work to PySide6, and offers a template that is compatib
 ```     
 
 ## How it Works
-* The entire setup is a self contained addon.
-  * In actual production, it would make sense to put the core.py contents into a module, rather than one specific addon, so other operators can also inherit from it.
+The entire setup is a self contained addon.
+
+In actual production, it would make sense to put the core.py contents into a module, rather than one specific addon, so other operators can also inherit from it.
 
 The main content here is the QtWindowEventLoop in core.py, which inherits the Blender operator and sets up modal execution with a QEventLoop that is triggered at 120Hz by Blender's window manager.
 
@@ -59,7 +56,9 @@ The only Blender UI element is AddonQtPanel (a regular bpy panel), containing th
 
 The CustomWindowOperator is a QtWindowEventLoop Operator, it launches the eventloop and the (Qt) AddonWindow.
 
-## Special Thanks
+## Credits and Thanks
 __Rajiv Sharma__ did all the difficult work on this, and graciously shared his knowledge in his [VFX Pipeline video](https://www.youtube.com/watch?v=QYgHyi7jd9c). 
 
-Frieder Erdmann contributed to layout, structure and documentation.
+__Frieder Erdmann__ contributed to layout, structure and documentation.
+
+__Xian Juyao__ contributed the Helper functions.
