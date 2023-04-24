@@ -10,7 +10,7 @@ __It relies on PySide6 and QtAwesome, but does not yet install those dependencie
 ## Features
 - Multi-page layout - Addon Controls, Preferences, Documentation, Credits and more!
 - Floating, draggable window!
-- Custom Title Bar with Minimize, Maximize and Close buttons!
+- Custom Title Bar with Logo, Title, Minimize, Maximize and Close buttons!
 - Custom Navigation Widget!
 - Markdown Documentation available in the Addon!
 - Images for your logo, addon background, buttons etc!
