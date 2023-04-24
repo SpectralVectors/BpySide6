@@ -8,8 +8,8 @@ __This Addon is under development.__
 __It relies on PySide6 and QtAwesome, but does not yet install those dependencies for you!__
 
 ## Features
-- Multi-page layout - Addon controls, preferences, Markdown documentation and credits!
-- Images for your addon background, buttons etc!
+- Multi-page layout - Addon controls, preferences, Markdown documentation, credits and more!
+- Images for your logo, addon background, buttons etc!
 - Custom gradients or solid colors per button, title etc!
 - Customizable dials for rotary control, linear sliders, in addition to the standard push buttons, radio buttons, checkboxes and more!
 - Stylesheet to allow global styling, or customizing individual elements.
