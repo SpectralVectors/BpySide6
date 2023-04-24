@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import (
     QDialog, QLabel, QPushButton, QDial, QWidget, QVBoxLayout, QGridLayout,
-    QHBoxLayout, QSlider, QTableWidgetItem, QCheckBox, QFrame, QTextEdit)
+    QHBoxLayout, QSlider, QCheckBox, QFrame, QTextEdit)
 from PySide6.QtCore import Qt, QSize
 import qtawesome as qta
 from . import resources_rc
@@ -266,11 +266,6 @@ class Addon_UI(QDialog):
             user_labels.append(self.i)
             self.info_layout.addWidget(self.i, count, 1, Left)
             count += 1
-        # count = 0
-        # for i in v_labels:
-        #     self.info_layout.addWidget(v_labels[count])
-        #     self.info_layout.addWidget(user_labels[count])
-        #     count += 1
         self.info.hide()
 
         # Create a frame to hold all the controls for the main area

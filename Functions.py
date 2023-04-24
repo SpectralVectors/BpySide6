@@ -11,7 +11,7 @@ class Addon_Functions(Addon_UI, QDialog):
         self.setWindowTitle(bl_info['name'])
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
         # self.setAttribute(Qt.WA_TranslucentBackground)
-        self.setStyleSheet(Helper.read_file('Style.qss'))
+        self.setStyleSheet(Helper.read_file('StyleSheet.qss'))
         self.show()
         self.connect_functions()
 
@@ -115,17 +115,20 @@ class Addon_Functions(Addon_UI, QDialog):
     def rotation_x_function(self):
         for object in bpy.context.scene.objects:
             if object.select_get():
-                object.rotation_euler[0] = (self.rotation_x.value() * 0.01745329)
+                value = self.rotation_x.value() * 0.01745329
+                object.rotation_euler[0] = (value)
 
     def rotation_y_function(self):
         for object in bpy.context.scene.objects:
             if object.select_get():
-                object.rotation_euler[1] = (self.rotation_y.value() * 0.01745329)
+                value = self.rotation_y.value() * 0.01745329
+                object.rotation_euler[1] = (value)
 
     def rotation_z_function(self):
         for object in bpy.context.scene.objects:
             if object.select_get():
-                object.rotation_euler[2] = (self.rotation_z.value() * 0.01745329)
+                value = self.rotation_z.value() * 0.01745329
+                object.rotation_euler[2] = (value)
 
 # Scale Slider Functions
     def scale_x_function(self):
@@ -149,8 +152,8 @@ class Addon_Functions(Addon_UI, QDialog):
             for area in screen.areas:
                 if area.type == 'VIEW_3D':
                     for space in area.spaces:
-                        space.overlay.show_overlays = self.checkbox_1.isChecked()
-                        # space.overlay.show_overlays = not space.overlay.show_overlays
+                        box = self.checkbox_1
+                        space.overlay.show_overlays = box.isChecked()
 
     def checkbox_2_function(self):
         for screen in bpy.data.screens:
@@ -160,10 +163,13 @@ class Addon_Functions(Addon_UI, QDialog):
                         space.show_gizmo = self.checkbox_2.isChecked()
 
     def checkbox_3_function(self):
-        bpy.context.scene.tool_settings.use_snap = self.checkbox_3.isChecked()
+        settings = bpy.context.scene.tool_settings
+        settings.use_snap = self.checkbox_3.isChecked()
 
     def checkbox_4_function(self):
-        bpy.context.scene.tool_settings.use_proportional_edit_objects = self.checkbox_4.isChecked()
+        settings = bpy.context.scene.tool_settings
+        settings.use_proportional_edit_objects = self.checkbox_4.isChecked()
+
 
 class CustomWindowOperator(QtWindowEventLoop):
     bl_idname = 'screen.custom_window'
